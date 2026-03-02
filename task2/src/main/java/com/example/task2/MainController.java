@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 @RestController
 @RequiredArgsConstructor
 public class MainController {
@@ -14,12 +16,11 @@ public class MainController {
 
     @PostMapping("/increase")
     public Long increaseValue(@RequestParam(defaultValue = "1") Long delta) {
-        service.increaseValue(delta);
-        return service.getValue();
+        return service.increaseValue(delta);
     }
 
     @GetMapping("/get")
-    public Long getValue() {
+    public AtomicLong getValue() {
         return service.getValue();
     }
 }

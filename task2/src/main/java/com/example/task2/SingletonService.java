@@ -2,27 +2,19 @@ package com.example.task2;
 
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 @Service
 public class SingletonService {
-    //    private static final AtomicLong value = new AtomicLong(0);
-    private static Long value = 0L;
-
-//    public Long increaseValue(Long delta) {
-//        return value.addAndGet(delta);
-//    }
-//
-//    public Long getValue() {
-//        return value.longValue();
-//    }
+    private volatile AtomicLong value = new AtomicLong(0);
 
     public Long increaseValue(Long delta) {
-        synchronized (SingletonService.class) {
-            return value += delta;
-        }
+        return value.addAndGet(delta);
     }
 
-    public Long getValue() {
+    public AtomicLong getValue() {
         return value;
     }
+
 
 }
