@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class SingletonService {
-    private volatile AtomicLong value = new AtomicLong(0);
+    private final AtomicLong value = new AtomicLong(0);
 
     public Long increaseValue(Long delta) {
         return value.addAndGet(delta);
