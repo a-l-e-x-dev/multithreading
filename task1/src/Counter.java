@@ -1,13 +1,15 @@
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Counter {
-    private volatile AtomicLong value = new AtomicLong(0);
+    private volatile Long value = 0L;
 
     public void increase() {
-        value.incrementAndGet();
+        synchronized (Counter.class) {
+            value++;
+        }
     }
 
-    public AtomicLong get() {
+    public Long get() {
         return value;
     }
 
