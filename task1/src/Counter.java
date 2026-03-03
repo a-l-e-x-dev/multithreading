@@ -1,5 +1,3 @@
-import java.util.concurrent.atomic.AtomicLong;
-
 public class Counter {
     private volatile Long value = 0L;
 
