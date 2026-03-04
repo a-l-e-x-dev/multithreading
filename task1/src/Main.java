@@ -1,7 +1,10 @@
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class Main {
     public static void main(String[] args) {
         Counter counter = new Counter();
@@ -23,10 +26,10 @@ public class Main {
             Thread.currentThread().interrupt();
         }
 
-        var expectedValue = 500_000;
-        System.out.println("Ожидаемое значение: " + expectedValue);
-        System.out.println("Фактическое значение: " + counter.get());
-        System.out.println("Разница: " + (expectedValue - counter.get().intValue()));
+        long expectedValue = 500_000L;
+        log.info("Ожидаемое значение: {}", expectedValue);
+        log.info("Фактическое значение: {}", counter.get());
+        log.info("Разница: {}", expectedValue - counter.get().intValue());
     }
 
 }
